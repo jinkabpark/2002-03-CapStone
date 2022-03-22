@@ -8,7 +8,7 @@ Unity를 이용한 가정 내 가전제품 Metaverse 구현
 3. 소프트웨어 
    협업 Tool : Git
    개발 Tool : Web Server (Flask, FastAPI), Postman, Unity를 이용 Metaverse 구현
-   개발 언어 : C++
+   개발 언어 : python3, C++
      
    개발 내용 : 사물(선풍기, 창문, 수도) 동작표현
               Web Server와 연동              
