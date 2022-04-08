@@ -1,0 +1,207 @@
+Raspberry-Pi Manual
+
+# History
+1. 2022.03.06 자료수정하여 재작성   by JK
+
+
+# 목차 
+
+1. 라즈비안 OS 설치
+   1. SD Card format 실행
+   2. 라즈비안 download
+   3. 최초 image file SD 카드로 라즈베리 첫 사용설정
+   4. 대한민국 시간대로 변경
+   5. 한글 표시와 입력을 위해 - 한글 폰트와 입력기 설치
+   6. SSH 연결
+   7. 사용자 계정 추가하기 (Default pi 계정삭제)
+   8. visual studio code에서 git 연결
+
+2. 설치된 내용 version 확인
+   1. python
+   2. Flask --> Fast API
+   3. sqlite3
+   4. g++
+   5. 실행디렉토리 생성
+
+3. 개발환경 구축
+   1. Git down 받기
+   2. makefile을 이용하여 shared library를 만든다
+   3 실행파일 디렉토리 만들기
+
+4. 기타
+   1. SD카드 관련 Utility 설치
+      1) SD Card formatter 설치
+      2) Disk Imager 설치
+      3) 다운받은 Image File을 SD Card에 설치하기
+   2. 명령창에서 password 변경
+   3. 프로그램 실행명령
+   4. GPIO
+   5. DB
+
+--------------------------------------------------
+1. OS 설치
+--------------------------------------------------
+1.1 SD Card format 실행
+   1. PC에서 'SD Card Formatter' 실행
+   2. 탐색기에서 SD 카드 드라이브 확인
+   3. Select card에 포맷하고자 하는 SD카드를 선택
+   4. Formating options
+      - Overwrite format 선택
+   5. Volumn label
+      - Farm22
+   6. 하단 우측에 'Format' 버튼 실행
+   4. Volumn information:File system:FAT32Capacity: 14.83GB
+   
+1.2 라즈비안 download - 이미지 파일을 PC에 접속된 SD카드에 download
+   1. https://www.raspberrypi.com/software/ 접속
+   2. 현재 사용하고 있는 운영 체제용 라즈베리 파이 이미저를 PC에 접속된 SD카드에 다운로드
+      - 'Download for Windows' 선택
+      - d:\download\Browser\imager_1.7.1.exe image 파일(19.302KB) download 된다
+	    . 2022.03.08 기준
+   3. SD카드 리더기에 'SD카드'를 끼우고 USB 단자에 연결
+   4. 다운로드 받은 설치 파일(imager_1.7.1.exe)을 더블 클릭하여 SD카드에 image를 Setup한다 
+      - 'Welcome to Raspberry Pi Imager Setup' 화면 하단 Install 버튼 클릭
+      - 'Completing Raspberry Pi Imager Setup' 화면 하단 Finish 버튼 클릭
+   5. 라즈베리 파이 이미저(Raspberry Pi Imager v1.7.1) 화면이 나타난다
+      1) Operation System밑에 'CHOOSE OS' 버튼을 클릭하여 사용할 운영 체제 'Raspberry Pi OS(32-bit)'를 선택
+      2) Storage밑에 'CHOOSE STORAGE' 버튼에서 'Mass Storage Device USB Device 16GB' 선택
+      3) 우측에 'WRITE' 버튼이 생성. 
+      4) 마지막으로 WRITE 버튼을 클릭.         
+	  참고 1) 생략. 우측 하단에 'Advanced options'에서 Enable SSH를 선택
+      참고 2) 생략. 프로그램 창 중앙의 CHOOSE SD CARD 버튼을 클릭한후 운영 체제를 설치할 SD카드 선택
+         
+1.3 최초 image file SD 카드로 라즈베리 첫 사용설정
+   1. SD카드를 노트북(컴퓨터)에서 분리한 다음 라즈베리 파이에 삽입후 전원 On   
+      1) 필요시, 해킹 차단을 위해 네트웍 케이블을 off 한다
+      2) pi password를 변경한다
+         - 좌측상단 라즈베리 로고버튼 - Preferences - Raspberry Pi Configuration
+   2. 'Welcome to Raspberry Pi'창에서 'Next'를 선택
+   3. 'Set Country'창에서
+      - Country는 'United Kingdom' 선택
+      - Languate는 'British English' 선택
+   4. 'Change Password'창에서 Password를 꼭 변경한다.
+      - 3번 과정에서 사전에 처리했다면 Next
+   5. 'Set Up Screen'창에서
+      - 'Next' 선택
+   6. 'Select Wireless Netrowk'창에서
+      - 'Skip' 선택
+   7. 'Update Software'창에서
+      - 'Next' 선택           # 10분 소요
+   8. 'Setup Complete'창에서
+      - 'Done' 선택
+   9. 'Setup Complete'창에서
+      - 좌측상단 라즈베리 로고버튼 - Shutdown - Reboot 선택
+      - 'Restart' 선택
+      
+1.4 대한민국 시간대로 변경
+   1. 한국 시간을 표시하도록 설정변경
+      - 좌측상단 라즈베리 로고버튼 - Preferences - Raspberry Pi Configuration
+      - 상단 Tab에서 'Locallisation' 선택
+      - 두번째 'Set Timezone' 선택
+      - Area에 'Asia' 선택
+      - Location에 'Seoul' 선택
+      - OK 선택
+   2. Keyboard
+      - 좌측상단 라즈베리 로고버튼 - Preferences - Raspberry Pi Configuration
+      - 상단 Tab에서 'Locallisation' 선택
+      - 세번째 'Keyboard' 선택
+	    Model : Generic 105-key
+		Layout: English(UK) --> English(US) 변경
+		Varkant:English(UK) --> English(US) 변경
+   3. Restart (Option)
+      - 자동으로 시간대 변경됨
+
+1.5 한글 표시와 입력을 위해 - 한글 폰트와 입력기 설치
+   1. Terminal 창을 띄운다.
+   2. 한글 폰트 설치
+      $ sudo apt install fonts-nanum
+      - browser에서 한글 정상 출력 확인가능
+   3. 한글 입력기 설치
+      $ sudo apt install fcitx fcitx-hangul
+      $ im-config -n fcitx    
+   4. Power Off(다시 시작, 설정을 반영하기 위하여)
+   5. '파이 로고' > Preferences > Fcitx Configuration 순서로 클릭  
+   6. Input Methon Configuration창 좌측 하단에 '+' 버튼을 클릭
+   7. Add input methon창에서 'Only Show Current Language" Check을 해제
+   8. Add input methon창 하단 Search Input Method Text 입력창에 'hangul" 입력
+   9. Add input methon창 상단 'Hangul' 선택한 다음에 'OK" 버튼 클릭
+  10. Global Config tab에서 Trigger Input Methon 부분의 'Ctrl + Space' 클릭한 다음
+     - 한/영 키 조합을 선택
+  11. '파이 로고' > Accessories > Text Editor 순서로 클릭하여 정상입력되는지 확인
+
+1.6 SSH 연결
+   1. 라즈베리파이에서
+      1.1 '파이 로고' > Preferences > Raspberry Pi Configuration 선택
+      1.2 상단 tab 3번째 'Interface' 선택
+      1.3 SSH enable하고 하단에 'OK'버튼 선택
+      1.4 라즈베리 파이 IP address를 확인한다.
+          1) Terminal창 띄운다
+          2) $ ifconfig
+          3) eth0: inet 192.168.0.2
+   
+   2. PC Visual Studio Code에서 SSH 연결
+      2.1 기존 연결정보 데이터를 지우고 하는 것이 편리함
+	      - C:\Users\USER\.ssh\known_hosts, config 파일 삭제한다
+      2.2 F1 Key를 누른다     # fn + f1 눌러 메뉴에서
+      2.3 Remote-SSH: Add New SSH Host 선택
+      2.4 'ssh pi@192.168.0.2' 입력
+          - 출력창에 'Picking SSH host' 확인
+          - 출력창에 'Selected 192.168.0.2' 확인
+      2.5 C:\Users\USER\.ssh\config 선택
+      2.6 하단에 'Connect' 선택
+      2.7 OS, password 물어보는 창이 뜨지 않고 종료됨
+      2.8 다시 시도
+   3. F1 Key를 누른다     # fn + f1 눌러 메뉴에서
+      3.1 Remote-SSH: Connect to Host 선택
+      3.2 위에 정의한 ip '192.168.0.2' 선택
+	      - Enter password for pi@192.168.0.2
+   4. 에러상황		  
+      1) C:\Users\USER\.ssh\config 파일 확인
+         Host 192.168.0.2    <-- 172.30.1.46 (대원APT)
+           HostName 192.168.0.2    <--172.30.1.46 (대원APT)
+           User pi
+      2) 'ssh pi@192.168.0.2' 입력
+         - 출력창에 'Picking SSH host' 확인
+         - 출력창에 'Selected 192.168.0.2' 확인
+      ==> 문제원인
+      라즈베리 전원 On-Off후 ssh 설정이 disable되어 있었음.
+      3) 정상연결이 안될경우 PC Visual Studio Code를 '관리자 권한'으로 실행
+      4) Remote SSH: Kill 명령도 실행해봄
+
+1.8 visual studio code에서 git 연결
+   $ git config --global user.name "userid@daum.net"
+
+--------------------------------------------------
+2. 설치된 software version 확인
+--------------------------------------------------
+2.1 python
+   $ python --version
+     -> Python 3.9.2
+   $ cd
+   $ cd NewFarm/farm/lib
+   $ ~/NewFarm/farm/lib $ vi makefile
+     #INCLUDES = -l -I/usr/include  -ljsoncpp -ljsoncpp/json -I/usr/include/python3.7m
+     #INCLUDES_ALL = -l -I/usr/include  -ljsoncpp -ljsoncpp/json -I/usr/include/python3.7m
+	 -->
+     INCLUDES = -l -I/usr/include  -ljsoncpp -ljsoncpp/json -I/usr/include/python3.9m
+     INCLUDES_ALL = -l -I/usr/include  -ljsoncpp -ljsoncpp/json -I/usr/include/python3.9m     
+   
+2.2 flask 
+   $ flask --version
+     -> Python 3.9.2
+        Flask 1.1.2
+        Werkzeug 1.0.1
+   
+2.3 sqlite3
+   $ sqlite3 --version
+     -> 3.34.1 2021-01-20 14:10:07 10e20c0b43500cfb9bbc0eaa061c57514f715d87238f4d835880cd846b9ealt1
+   $ sqlite3 db.sqlite3 
+     sqlite3> .tables		# table 보기
+
+2.4 g++
+   $ g++ --version
+     -> g++ (Raspbian 10.2.1-6+rpi1) 10.2.1 20210110
+        Copyright (C) 2020 Free Software Foundation, Inc.
+        This is free software; see the source for copying conditions.  There is NO
+        warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
