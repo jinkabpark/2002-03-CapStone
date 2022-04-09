@@ -1,0 +1,56 @@
+
+		{
+			"name": "PC >> 라즈베리 1. Hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.30.1.27:15000/v1/hello",
+					"protocol": "http",
+					"host": [
+						"172",
+						"30",
+						"1",
+						"27"
+					],
+					"port": "15000",
+					"path": [
+						"v1",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PC  >> 라즈베리 2 GPIO 모터 순방향구동",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"objectName\":\"모터1\",\r\n    \"operationMode\":\"MANUAL\",\r\n    \"objectState\":\"RUNNING_FORWARD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.30.1.27:15000/v1/8",
+					"protocol": "http",
+					"host": [
+						"172",
+						"30",
+						"1",
+						"27"
+					],
+					"port": "15000",
+					"path": [
+						"v1",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
