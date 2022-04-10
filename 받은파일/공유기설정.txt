@@ -1,0 +1,133 @@
+#  2022.04.10  Created by JK.Park
+
+1. 주의
+   개발용 PC와 라즈베리가 동일 Intra Net 공유기에 물려있어야 한다
+   PC는 무선접속을 우선으로 하기 때문에 무선공유기를 사용하여 접속하는것 보다 유선으로 접속해서 문제 소지를 제거할 필요있다.
+   
+2. 사용하드웨어 확인
+   1) 중앙 공유기 모델 : KT GiGA WiFi Wave 2
+   2) Intra Net 공유기 모델 : ipTIME G104A
+   3) 공유기에 PC, Raspberry-pi 유선으로 연결
+
+3. PC Network 무선을 "사용안함"으로 설정
+   1) 하단 메뉴바 탐색버튼 선택후 '제어판' 선택
+   2) "네트워크 및 인터넷' 선택
+   3) "네트워크 및 공유센터' 선택
+   4) 왼쪽 프레임에서 '어댑터 설정 변경' 선택
+      (1) Wi-Fi  --> 사용 안함으로 변경함
+      (2) vEthernet (Default Switch)
+      (3) VMware Network Adapter (VMnet1)
+      (4) VMware Network Adapter (VMnet8)
+      --> 노트북 네트웍이 Default로 무선으로 잡히기 때문에 무선을 Off해야 한다
+   
+4. 노트북에서 IP, Mac Address, '기본 게이트웨이' 확인
+   1) IP, Mac Address 확인
+      C:\> ipconfig or ipconfig /all (노트북 윈도우 명령창에서)
+          이더넷 어댑터 이더넷:    
+             링크-로컬 IPv6 주소 : fe80::d9c9:b540:ed2f:dec5%13
+             IPv4주소........ 192.168.0.3
+             서브넷 마스크 ..... 255.255.255.0
+             기본게이트웨이 ..... 192.168.0.1      
+          이더넷 어댑터 vEthernet (Default Switch):   
+             물리적 주소 : F8-34-41-42-18-3C   
+             링크-로컬 IPv6 주소 : fe80::e8dc:89c9:4555:6d6c%36
+             IPv4주소........ 172.28.192.1
+             서브넷 마스크 ..... 255.255.255.0
+             기본게이트웨이 .....    
+      C:\> getmac /v
+        연결이름     네트워크 어댑터        물리적 주소
+        이더넷      Realtek PCIe Gb   48-BA-4E-58-79-60
+   2) 브라우져에서 공유기 기본게이트웨이 접속확인
+      - http://192.168.0.1
+
+5. Intra Net 공유기 DDNS 세팅방법
+   1) http://192.168.0.1/login/login.cgi
+   2) 고급설정 - 시스템관리 - 관리자설정을 통해 암호변경
+      관리자계정 : admin
+      새 관리자암호 : ForeignUniversity  <-- 설정
+   3) 고급설정 - 특수기능 - DDNS 설정
+       - 호스트이름 : ForeignUniversity.iptime.org
+         사용자계정 : ????@gmail.com or ????@daum.net
+         사용자암호 : ????   
+       - ping ForeignUniversity.iptime.org 정상등록되었는지 확인한다.  (ipTime에서 활성화 되는데 2일정도 소요됨)   
+   4) 고급설정 - 보안기능 - 공유기접속/보안관리를 통해 관리자 접속허용
+      - 원격관리 포트 : 25000으로 수정
+      
+6. 라즈베리 IP, Mac Address 확인하고 Web Server 기동한다
+   (1) 터미널에서 'ping raspberrypi.local' 이용 IP Address 확인
+   (2) Mac address 확인
+       - 터미널에서 'ls /sys/class/net'에서 device 확인
+         pi@raspberrypi:~ $ ls /sys/class/net
+       - 상기 결과에 나온 디바이스에 대한 config 명령 수행
+         pi@raspberrypi:~$ ifcofig eth0   
+           eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+           inet 192.168.0.3  netmask 255.255.255.0  broadcast 192.168.0.255
+           inet6 fe80::4d2a:206:ffbc:1166  prefixlen 64  scopeid 0x20<link>
+           ether dc:a6:32:9a:2b:96  txqueuelen 1000  (Ethernet)
+   (3) flask 기동중인지 확인
+      $ sudo systemctl status flask
+      $ sudo systemctl stop flask     -- 중지 명령         
+   (4) web server 기동
+      $ cd 
+      $ cd  HomeUnity
+      $ python3 HomeUnity.py
+   
+7. 공유기에서 개발서버(노트북) 고정 IP 할당   
+   1) '고급설정' - '네트워크관리' - '내부 네트워크 정보'에서
+      - 사용중인 IP와 Mac address를 확인한다
+      - 공유기 있는 MAC와 PC, 라즈베리 MAC 일치하는지 재확인한다
+      1 192.168.0.2(raspberrypi)        DC-A6-32-9A-2B-96   유선 : 자동할당
+      2 192.168.0.3(DESKTOP-QRNA154)    48-BA-4E-58-79-60   유선 : 자동할당
+   2) '고급설정' - '네트워크관리' - '내부 네트워크 설정'에서
+      - 수동 IP 할당 설정에서 PC와 라즈베리를 '적용'하여 고정IP 활성화한다
+      - 설정된 IP MAC 주소
+      192.168.0.2  / DC-A6-32-9A-2B-96
+      192.168.0.3  / 48-BA-4E-58-79-60
+   3) '고급설정' - 'NAT/라우터관리' - '포트포워드 설정'
+      - 규칙이름       내부 IP         외부포트    내부포트
+      - Web Server  192.168.0.2   15000     15000  (HomeUnity.py의 port 확인)
+      
+8. 공유기에서 인터넷 연결정보 확인
+   1) 기본설정 - 시스템요약정보
+   2) 인터넷 정보
+      - 외부 IP 주소 : 125.132.???.???
+      - http://125.132.???.???:15000/v1/hello              --> 개발용 WebServer
+      - http://ForeignUniversity.iptime.org:15000/v1/hello1
+
+9. raspberry pi에서 ip 확인하는 방법
+   $ ping raspberrypi.local
+      PING raspberrypi.local(192.168.0.2) 56 bytes of data
+
+10. ForeignUniversity Server 중지,기동방법
+    * $ sudo systemctl start flask
+    * $ sudo systemctl enable flask
+    * $ sudo systemctl daemon-reload
+    * $ sudo systemctl status flask --> 명령을 통해 정상적으로 실행되었는지 확인
+    * $ sudo systemctl stop flask
+    * $ python3 ForeignUniversity.py
+
+11. Visual Studio Code SSH 연결  
+   1) 위치 : C:\Users\USER\.ssh\config 편집
+      Host 192.168.0.2   
+        HostName 192.168.0.2   
+        User pi
+   2) F1 Key를 누른다
+      fn + f1 눌러 메뉴에서 
+      (1) Remote-SSH: Connect to Host 선택
+   3) Enter password for pi@192.168.0.2 
+      - ForeignUniversity <-- raspberry  변경
+   4) 폴더열기 : /home/pi/ForeignUniversity
+   5) 정상연결이 안될경우 PC Visual Studio Code를 '관리자 권한'으로 실행
+
+12. raspberry에서 pi password 변경
+   1) 상단 산딸기 - 기본설정 - Raspberry Pi Configuration 선택
+   2) System Tab에서 'Password' 변경
+      - ForeignUniversity
+   
+13. 네트웍 구성
+   - KT 인터넷 중계기 - 공유기    
+
+14. raspberry-pi에서 wifi disable하는 방법
+   vi /boot/config.txt
+   dtoverlay=disable-wifi   <-- 마지막부분에 추가
+
