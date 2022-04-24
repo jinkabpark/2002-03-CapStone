@@ -1,0 +1,10 @@
+Used Utility : postman
+
+Mock Server : https://96817bc1-ad55-4dee-8b88-991028e927c1.mock.pstmn.io
+
+
+Sample Data :
+{
+    "Hello World",
+    "Capstone 12"
+}
