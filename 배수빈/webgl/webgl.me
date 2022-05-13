@@ -1,1 +1,37 @@
-webgl 빌드 테스트용
+webgl 사용 위한 설치법/ 검토방법 by 배수빈 2022.05.13
+테스트버전 : raspbian os 최신 버전 깔린 32gb 메모리 카드로
+파이3와 파이4 둘다 테스트 진행함
+
+결론 : 4는 작동, 3은 브라우저 일부 기능 호환 issue 해결 안됨
+
+브라우저(chromium = 라즈비안 os 전용 공식 크롬)  및 os 최신화 진행
+콘솔창에 아래와 같이 차례대로 입력
+
+sudo apt update
+sudo apt full-upgrade
+sudo apt install chromium-browser -y
+
+설치가 완료되면, 아래의 단계에 따라 하나씩 하고 webgl 확인해보기(확인 사이트는 5번 아래에 있음)
+
+1. chromium 브라우저에서 설정->고급설정->시스템
+가능하면 gpu 가속 사용(use Hardware acceleration when available) 활성화
+2. chromium 재부팅 이후 라즈베리 파이도 재부팅
+3. chrome://flags 을 chromium 브라우저 url 창에 입력(실험 모드 사용)
+4. 실험버전 기능 리스트가 많은데 컨트롤 f 눌러서 webgl 키워드로 검색
+5. extension 옵션 2개랑, display compositor(브라우저한테 1개 대신 2개 쓰레드 강제 할당) 활성화 후 재부팅 해보기
+-> 배수빈은 5번 항목 설정 없이 라즈비안에서 32bit 운영체계로도 webgl 작동됨
+
+설치 완료 후 webgl 테스트 해볼 용도 사이트
+1) https://get.webgl.org/
+ - 호환되는 브라우저/기기/운영체제인지 확인해주고, 스펙은 되는데 설정이 안되있으면 그거에 대한 설명페이지 나옴(영어임;;)
+
+2) https://webglsamples.org/
+ - 고사양 3d 렌더링 확인 툴 (아무래도 컴퓨터 급 hw로 돌리는 애들 테스트용)
+
+3) http://threejs.org/examples/
+ - 2015년 이전부터 있던 webgl 샘플 확인 홈페이지 초기형(공식 지원 안할때, 아마 three.js나 다른 os+ 확장 프로그램으로 테스트했던 용도 같음)
+
+*굳이 안건들여도 되는거
+라즈비안 configuration 가서 vram 기본 64~78mb 되있는거 512까지 늘려도 상관없음(sd카드가 1기가 이상이면 512해도 무방) 하지만 gpu 성능 향상 체감 안가고, 브라우저 작동이 더 느려진 기분
+
+swap  기능 사용해서 용량 확장 - vram 증설처럼 굳이 할필요 못느낌
