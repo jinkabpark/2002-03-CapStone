@@ -1,0 +1,320 @@
+
+
+
+
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelectChoose</title>
+</head>
+<body>
+    <h1><a href="index.html">SelectChoose</a></h1>
+    <ol>
+        <li><a href="isPlace.html">isPlace</a></li>
+        <li><a href="isDevice.html">isDevice</a></li>
+        <li><a href="isStatus.html">isStatus</a></li>
+        <li><a href="isFunction.html">isFunction</a></li>
+        <li><a href="isSwitch.html">isSwitch</a></li>
+    </ol>
+</body>
+</html>
+
+
+
+
+isPlace.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isPlace</title>
+</head>
+<body>
+    <h1>장소를 입력해주세요</h1>
+    <h2>현관 거실 방 부엌 </h2>
+    <ol>
+        <li><a href="isDeviceFunction.html">현관</a></li>
+        <li><a href="isDeviceFunction.html">거실</a></li>
+        <li><a href="isDeviceFunction.html">방</a></li>
+        <li><a href="isDeviceFunction.html">부엌</a></li>
+    </ol>
+</body>
+</html>
+
+
+
+
+isDeviceFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>찾으시는 Device를 입력해주세요</h1>
+    <h2>전등 TV 베란다 에어컨 수도꼭지 냉장고 싱크대 전자레인지</h2>
+    <h3>밥솥 창문 선풍기 컴퓨터 환풍기 헤어드라이어기</h3>
+    <ol>
+        <li><a href="airconditionerFunction.html">에어컨</a></li>
+        <li><a href="verandaFunction.html">베란다</a></li>
+        <li><a href="tvFunction.html">tv</a></li>
+        <li><a href="lightFunction.html">전등</a></li>
+        <li><a href="refrigeratorFunction.html">냉장고</a></li>
+        <li><a href="microwaveFunction.html">전자레인지</a></li>
+    </ol>
+</body>
+</html>
+
+
+
+
+airconditionerFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>에어컨 전원을 on 하겠습니다</h1>
+    <h2>에어컨 전원을 off 하겠습니다</h2>
+    <h3>에어컨 풍량을 up 하겠습니다</h3>
+    <h4>에어컨 풍량을 down 하겠습니다</h4>
+    <h5>에어컨 온도를 up 하겠습니다</h5>
+    <h6>에어컨 온도를 down 하겠습니다</h6>
+</body>
+</html>
+
+
+
+
+verandaFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>베란다를 open 하겠습니다</h1>
+    <h2>베란다를 close 하겠습니다</h2>
+</body>
+</html>
+
+
+
+
+tvFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>tv 전원을 on 하겠습니다</h1>
+    <h2>tv 전원을 off 하겠습니다</h2>
+    <h3>tv 음량을 up 하겠습니다</h3>
+    <h4>tv 음량을 down 하겠습니다</h4>
+    <h5>tv 채널을 up 하겠습니다</h5>
+    <h6>tv 채널을 down 하겠습니다</h6>
+</body>
+</html>
+
+
+
+
+lightFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>전등을 on 하겠습니다</h1>
+    <h2>전등을 off 하겠습니다</h2>
+</body>
+</html>
+
+
+
+
+refrigeratorFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>냉장고를 open 하겠습니다</h1>
+    <h2>냉장고를 close 하겠습니다</h2>
+</body>
+</html>
+
+
+
+
+microwaveFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>전자레인지를 on 하겠습니다</h1>
+    <h2>전자레인지를 off 하겠습니다</h2>
+</body>
+</html>
+
+
+
+
+isDevice.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isDevice</title>
+</head>
+<body>
+    <h1>찾으시는 Device를 입력해주세요</h1>
+    <h2>전등 TV 베란다 에어컨 수도꼭지 냉장고 싱크대 전자레인지</h2>
+    <h3>밥솥 창문 선풍기 컴퓨터 환풍기 헤어드라이어기</h3>
+    <h4>찾으시는 위치에 Device가 있습니다</h4>
+    <h5>찾으시는 위치에 Device가 없습니다</h5>
+</body>
+</html>
+
+
+
+
+isStatus.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isStatus</title>
+</head>
+<body>
+    <h1>찾으시는 Device를 입력해주세요</h1>
+    <h2>전등 TV 베란다 에어컨 수도꼭지 냉장고 싱크대 전자레인지</h2>
+    <h3>밥솥 창문 선풍기 컴퓨터 환풍기 헤어드라이어기</h3>
+    <h4>찾으시는 Device는 on 입니다</h4>
+    <h5>찾으시는 Device는 off 입니다</h5>
+</body>
+</html>
+
+
+
+
+isFunction.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isFunction</title>
+</head>
+<body>
+    <h1>찾으시는 Device가 가지고 있는 기능</h1>
+    <h2>on off</h2>
+    <h3>풍량 up down</h3>
+    <h4>음량 up down</h4>
+    <h5>채널 up down</h5>
+    <h6>open close</h6>
+    <h7>온도 up down</h7>
+    <h8>회전 on off</h8>
+</body>
+</html>
+
+
+
+
+isSwitch.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isSwitch</title>
+</head>
+<body>
+    <h1>전원 공급 여부</h1>
+    <h2>장소를 입력해주세요</h2>
+    <h3>현관 거실 방 부엌</h3>
+    <ol>
+        <li><a href="isPlaceSwitch.html">현관</a></li>
+        <li><a href="isPlaceSwitch.html">거실</a></li>
+        <li><a href="isPlaceSwitch.html">방</a></li>
+        <li><a href="isPlaceSwitch.html">부엌</a></li>
+    </ol>
+</body>
+</html>
+
+
+
+
+isPlaceSwitch.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>입력하신 장소의 switch는 on입니다</h1>
+    <h2>입력하신 장소의 switch는 off입니다</h2>
+</body>
+</html>
+
+
+
+
+
